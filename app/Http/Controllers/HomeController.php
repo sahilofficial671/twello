@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TaskController extends Controller
+class HomeController extends Controller
 {
     /**
-     * Display a listing of the tasks.
+     * Display dashboard.
      *
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
-        $tasks = $request->user()->vehicles;
-        return view('vehicle.index', ['vehicles' => $request->user()->vehicles]);
+        return view('dashboard', ['boards' => $request->user()->boards]);
     }
 }

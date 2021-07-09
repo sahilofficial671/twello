@@ -16,8 +16,9 @@ class TaskUserSeeder extends Seeder
     public function run()
     {
         TaskUser::create([
-            'name'              => 'Sahil Bhatia',
-            'email'             => 'sahil@sahil.com',
+            'name'  => 'Sahil Bhatia',
+            'email' => 'sahil@sahil.com',
+            'board_id' => 1,
         ]);
     }
 }

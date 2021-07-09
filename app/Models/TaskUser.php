@@ -17,5 +17,6 @@ class TaskUser extends Model
     protected $fillable = [
         'name',
         'email',
+        'board_id',
     ];
 }
