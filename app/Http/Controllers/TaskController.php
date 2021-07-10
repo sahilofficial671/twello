@@ -16,7 +16,6 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @param  int $boardId
      * @param  int $taskUserId
-     * @param  int $taskId
      *
      * @return \Illuminate\Http\Response
      */
