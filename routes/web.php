@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\TaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,10 @@ Route::group(["middleware" => ['auth']], function(){
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
     Route::prefix('boards')->group(function () {
-        Route::get('/{board_id}', [BoardController::class, 'show'])->name('boards.show');
+        Route::get('/{board}', [BoardController::class, 'show'])->name('boards.show');
+        Route::post('/{board_id}/task_users/{task_user_id}/tasks', [TaskController::class, 'store'])->name('tasks.submit');
+        Route::put('/{board_id}/task_users/{task_user_id}/tasks/{task_id}', [TaskController::class, 'update'])->name('tasks.update');
+
+        Route::delete('/{board_id}/task_users/{task_user_id}/tasks/{task_id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
     });
 });

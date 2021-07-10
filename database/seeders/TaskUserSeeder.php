@@ -20,5 +20,17 @@ class TaskUserSeeder extends Seeder
             'email' => 'sahil@sahil.com',
             'board_id' => 1,
         ]);
+
+        TaskUser::create([
+            'name'  => 'John Doe',
+            'email' => 'john@doe.com',
+            'board_id' => 1,
+        ]);
+
+        TaskUser::create([
+            'name'  => 'Jane Doe',
+            'email' => 'jane@doe.com',
+            'board_id' => 2,
+        ]);
     }
 }

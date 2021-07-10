@@ -16,5 +16,6 @@ class BoardSeeder extends Seeder
     public function run()
     {
         Board::create(['title' => 'Development', 'user_id' => 1]);
+        Board::create(['title' => 'Development', 'user_id' => 2]);
     }
 }
