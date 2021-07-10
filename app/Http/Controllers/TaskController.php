@@ -89,14 +89,13 @@ class TaskController extends Controller
     /**
      * Destroy the task.
      *
-     * @param  \Illuminate\Http\Request $request
      * @param  int $boardId
      * @param  int $taskUserId
      * @param  int $taskId
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $boardId, $taskUserId, $taskId)
+    public function destroy($boardId, $taskUserId, $taskId)
     {
         try {
             $board = Board::findOrFail($boardId);

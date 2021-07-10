@@ -20,8 +20,15 @@
 
                                 <div class="tasks space-y-2">
                                     @foreach ($task_user->tasks as $task)
-                                        <div class="task py-2 px-3 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg cursor-pointer" data-task-id="{{ $task->id }}">
-                                            {{ $task->title }}
+                                        <div class="task py-2 px-3 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg cursor-pointer flex justify-between items-center" data-task-id="{{ $task->id }}">
+                                            <div class="title">{{ $task->title }}</div>
+                                            <div class="actions">
+                                                <button class="delete" buttonType="danger-light" padding="px-1 py-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                </button>
+                                            </div>
                                         </div>
                                     @endforeach
                                 </div>
@@ -61,13 +68,13 @@
                 && update_url.val() != ""
                 && updating_task_id.val() != ""
                 ){
-                    console.log('deleting');
-                    deleteEmptyTask();
+                    deleteTask(update_url.val());
                 }
 
                 // Remove & empty inputs
                 if(! $(e.target).hasClass('task')
                 && ! $(e.target).hasClass('add-card-input')
+                && ! $(e.target).hasClass('editing')
                 && ! $(e.target).hasClass('add-card-button')){
 
                     // If not empty convert previous input to task
@@ -96,7 +103,7 @@
                 && $('#add-card-input').val() == ""
                 && update_url.val() != ""
                 && updating_task_id.val() != ""){
-                    deleteEmptyTask();
+                    deleteTask(update_url.val());
                 }
 
                 if(! $(this).hasClass('editing') && $('#add-card-input') && $('#add-card-input').val() != ""){
@@ -107,7 +114,9 @@
                 // If editing task
                 if(! $(this).hasClass('editing') && $(this).data('task-id') != ""){
                     $(this).addClass('editing');
+
                     var container = $(this).closest('.task-user-container');
+
                     var create_url = container.find('[name=create_url]').val();
 
                     // Remove & empty all existing inputs
@@ -115,9 +124,9 @@
                     update_url.val('');
                     updating_task_id.val('');
 
-                    value = $(this).text().trim();
+                    value = $(this).find('.title').text().trim();
 
-                    $(this).addClass('task-input-container').removeClass('py-2 px-3 task')
+                    $(this).addClass('task-input-container').removeClass('py-2 px-3 task flex justify-between')
 
                     update_url.val(create_url + '/' + $(this).data('task-id'));
                     updating_task_id.val($(this).data('task-id'));
@@ -127,12 +136,21 @@
 
             });
 
+            $('.delete').on('click', function(){
+                var task = $(this).closest('.task');
+                var container = $(this).closest('.task-user-container');
+                var create_url = container.find('[name=create_url]').val();
+                deleteTask(create_url + '/' + task.data('task-id'));
+                task.remove();
+            });
+
+
             $('.add-card-button').on('click', function(){
                 // Enable all button first
                 $('.add-card-button').prop('disabled', false);
 
                 if($('#add-card-input') && $('#add-card-input').val() == "" && update_url.val() != "" && updating_task_id.val() != ""){
-                    deleteEmptyTask();
+                    deleteTask(update_url.val());
                 }
 
                 if($('#add-card-input') && $('#add-card-input').val() != ""){
@@ -212,24 +230,15 @@
                 .closest('.task-input-container')
                 .removeClass('task-input-container')
                 .removeClass('editing')
-                .addClass('py-2 px-3')
-                .text(value);
+                .addClass('py-2 px-3 task flex justify-between items-center')
+                .html('<div class="title">'+value+'</div><div class="actions"><button class="delete" buttonType="danger-light" padding="px-1 py-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button></div>')
         }
 
-        function convertTaskToInput(task){
-            // console.log(task);
-            // value = task.text().trim();
-            // console.log(value);
-            // task.addClass('task-input-container converted-into-input')
-            //     .removeClass('py-2 px-3 task')
-            //     .html('<input type="text" id="add-card-input" class="add-card-input border-1 border-blue-600 ring-blue-500 ring-1 rounded-md w-full" placeholder="Add card title" value="'+value+'"></div>')
-        }
-
-        function deleteEmptyTask(){
+        function deleteTask(url){
+            console.log('Deleting - '+ url);
             $.ajax({
                 type: "DELETE",
-                url:  update_url.val() +'?_token=' + '{{ csrf_token() }}',
-                data: {'title': ""},
+                url:  url +'?_token=' + '{{ csrf_token() }}',
                 dataType: "json",
                 success: function(data){
                     console.log(data);
