@@ -24,7 +24,7 @@ class TaskController extends Controller
         try {
             $board = Board::findOrFail($boardId);
         } catch (ModelNotFoundException $e) {
-            return response()->json('Board does not exist.');
+            return response()->json(['status' => 'error', 'message' => 'Board does not exist.'], 400);
         }
 
         try {
@@ -59,7 +59,7 @@ class TaskController extends Controller
         try {
             $board = Board::findOrFail($boardId);
         } catch (ModelNotFoundException $e) {
-            return response()->json('Board does not exist.');
+            return response()->json(['status' => 'error', 'message' => 'Board does not exist.'], 400);
         }
 
         try {
@@ -99,7 +99,7 @@ class TaskController extends Controller
         try {
             $board = Board::findOrFail($boardId);
         } catch (ModelNotFoundException $e) {
-            return response()->json('Board does not exist.');
+            return response()->json(['status' => 'error', 'message' => 'Board does not exist.'], 400);
         }
 
         try {

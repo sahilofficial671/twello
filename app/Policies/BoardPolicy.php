@@ -30,7 +30,7 @@ class BoardPolicy
      */
     public function view(User $user, Board $board)
     {
-        //
+        return $user->id === $board->user_id;
     }
 
     /**

@@ -33,6 +33,8 @@ Route::group(["middleware" => ['auth']], function(){
         // Task Users
         Route::prefix('/{board_id}/task_users')->name('task_users')->group(function () {
             Route::post('/', [TaskUserController::class, 'store'])->name('.submit');
+            Route::get('/{task_users_id}', [TaskUserController::class, 'show'])->name('.show');
+            Route::put('/{task_users_id}', [TaskUserController::class, 'update'])->name('.update');
             Route::delete('/{task_users_id}', [TaskUserController::class, 'destroy'])->name('.destroy');
         });
 
