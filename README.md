@@ -7,5 +7,5 @@ Project/Software Management Software (Trello clone)
 - Tasks
     - Create / Update / Delete
 
-- Task Users as Boards/Columsn
+- Task Users as Boards/Column
     - Create / Update / Delete
