@@ -52,7 +52,7 @@
                     @endif
 
                     @foreach ($board->task_users as $task_user)
-                        <div class="w-1/3 bg-blue-50 border-2 border-blue-200 border-opacity-50 shadow-sm sm:rounded-lg task-user-container">
+                        <div class="w-1/3 {{ ($loop->index + 1) }}bg-blue-50 border-2 border-blue-200 border-opacity-50 shadow-sm sm:rounded-lg task-user-container" data-task-user-id="{{ $task_user->id }}">
                             <input type="hidden" name="create_url" value="{{ route('tasks.submit', [$board, $task_user]) }}">
                             <div class="py-3 px-3">
                                 <div class="task-user flex justify-between items-center pb-4" data-id="{{ $task_user->id }}">
@@ -104,15 +104,58 @@
     </div>
 
     <script>
-        function app(){
-            return {
-                deleteTask(){
-                    console.log('hiii');
-                }
-            }
-        }
         var update_url = $('body').find('[name=update_url]');
         var updating_task_id = $('body').find('[name=updating_task_id]');
+
+        $(function() {
+            var task_id = null;
+            var task_user_id = null;
+
+            $( ".task" ).draggable();
+            $( ".task-user-container" ).droppable({
+                activate: function(event, ui) {
+                    task_id = $(event.currentTarget).data('task-id')
+                },
+                over: function(event, ui ) {
+                    $(this).addClass("ui-state-highlight")
+                },
+                drop: function( event, ui ) {
+                    $(this).removeClass('ui-state-highlight');
+
+                    $(this).find(".tasks")
+                        .append(
+                            ui.draggable.removeAttr('style')
+                        );
+
+                    $(this).find(".tasks .task").removeAttr('style');
+
+                    task_user_id = $(this).data('task-user-id');
+
+                    console.log('Task: '+task_id+', Task User: '+task_user_id);
+
+                    var url = $(location).attr("href")+'/task_users/'+task_user_id + '/tasks/' + task_id + '/toggle';
+
+                    $.ajax({
+                        type: 'PUT',
+                        url: url +'?_token=' + '{{ csrf_token() }}',
+                        dataType: "json",
+                        success: function(data){
+                            console.log(data);
+                        },
+                        error: (data) => {
+                            if(data.responseJSON && data.responseJSON.message) {
+                                console.log(data.responseJSON.message);
+                            }else{
+                                console.log(data);
+                            }
+                        }
+                    });
+                },
+                out: function(event, ui){
+                    $(this).removeClass('ui-state-highlight')
+                }
+            });
+        });
 
         $(document).ready(function() {
 

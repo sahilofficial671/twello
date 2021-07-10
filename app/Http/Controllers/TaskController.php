@@ -123,4 +123,44 @@ class TaskController extends Controller
             'message' => 'Successfully Deleted.',
         ], 200);
     }
+
+    /**
+     * Toggle user that task belongs to.
+     *
+     * @param  int $boardId
+     * @param  int $taskUserId
+     * @param  int $taskId
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function toggle ($boardId, $taskUserId, $taskId)
+    {
+        try {
+            $board = Board::findOrFail($boardId);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['status' => 'error', 'message' => 'Board does not exist.'], 400);
+        }
+
+        try {
+            $taskUser = $board->task_users()->findOrFail($taskUserId);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['status' => 'error', 'message' => 'Task User does not exist'], 400);
+        }
+
+        try {
+            $task = Task::findOrFail($taskId);
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['status' => 'error', 'message' => 'Task does not exist'], 400);
+        }
+
+        $task->task_user()->dissociate();
+        $task->task_user()->associate($taskUser);
+        $task->save();
+
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'Successfully moved.',
+            'task'    => $task->refresh()
+        ]);
+    }
 }

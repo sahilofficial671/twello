@@ -42,6 +42,7 @@ Route::group(["middleware" => ['auth']], function(){
         // Tasks
         Route::prefix('/{board_id}/task_users/{task_users_id}/tasks')->name('tasks')->group(function () {
             Route::post('/', [TaskController::class, 'store'])->name('.submit');
+            Route::put('/{task_id}/toggle', [TaskController::class, 'toggle'])->name('.toggle');
             Route::put('/{task_id}', [TaskController::class, 'update'])->name('.update');
             Route::delete('/{task_id}', [TaskController::class, 'destroy'])->name('.destroy');
         });
