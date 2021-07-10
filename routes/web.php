@@ -29,6 +29,7 @@ Route::group(["middleware" => ['auth']], function(){
     Route::prefix('boards')->group(function () {
         // Boards
         Route::get('/{board}', [BoardController::class, 'show'])->name('boards.show');
+        Route::post('/submit', [BoardController::class, 'store'])->name('boards.store');
 
         // Task Users
         Route::prefix('/{board_id}/task_users')->name('task_users')->group(function () {

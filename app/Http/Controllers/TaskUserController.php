@@ -59,7 +59,10 @@ class TaskUserController extends Controller
 
         $board->task_users()->create(['name' => $request->name]);
 
-        return back();
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Scccessfully created task user.',
+        ]);
     }
 
     /**

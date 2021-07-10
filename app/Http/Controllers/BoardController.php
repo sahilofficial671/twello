@@ -27,4 +27,27 @@ class BoardController extends Controller
 
         return view('board.show', ['board' => $board->refresh()]);
     }
+
+    /**
+     * Store board.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        if(empty($request->title)){
+            return back()->with([
+                'status' => 'error',
+                'message' => 'Please add board title.',
+            ]);
+        }
+
+        $request->user()->boards()->create(['title' => $request->title]);
+
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Scccessfully Created.',
+        ]);
+    }
 }

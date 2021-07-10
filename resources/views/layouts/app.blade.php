@@ -30,5 +30,6 @@
                 {{ $slot }}
             </main>
         </div>
+        <x-alert />
     </body>
 </html>
