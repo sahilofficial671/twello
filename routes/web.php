@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\TaskUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +27,21 @@ Route::group(["middleware" => ['auth']], function(){
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
     Route::prefix('boards')->group(function () {
+        // Boards
         Route::get('/{board}', [BoardController::class, 'show'])->name('boards.show');
-        Route::post('/{board_id}/task_users/{task_user_id}/tasks', [TaskController::class, 'store'])->name('tasks.submit');
-        Route::put('/{board_id}/task_users/{task_user_id}/tasks/{task_id}', [TaskController::class, 'update'])->name('tasks.update');
 
-        Route::delete('/{board_id}/task_users/{task_user_id}/tasks/{task_id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+        // Task Users
+        Route::prefix('/{board_id}/task_users')->name('task_users')->group(function () {
+            Route::post('/', [TaskUserController::class, 'store'])->name('.submit');
+            Route::delete('/{task_users_id}', [TaskUserController::class, 'destroy'])->name('.destroy');
+        });
+
+
+        // Tasks
+        Route::prefix('/{board_id}/task_users/{task_users_id}/tasks')->name('tasks')->group(function () {
+            Route::post('/', [TaskController::class, 'store'])->name('.submit');
+            Route::put('/{task_id}', [TaskController::class, 'update'])->name('.update');
+            Route::delete('/{task_id}', [TaskController::class, 'destroy'])->name('.destroy');
+        });
     });
 });
