@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="title">{{ __('Dashboard') }}</x-slot>
 
-    <div class="max-w-2xl py-12 mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="max-w-2xl py-4 md:py-12 mx-auto px-2 sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
+            <div class="py-2 px-2 md:px-6 md:py-6 bg-white border-b border-gray-200">
 
                 <div class="flex justify-between mb-3 items-center" x-data="{isModalActive: false}">
                     <div class="text-lg font-semibold">Boards</div>

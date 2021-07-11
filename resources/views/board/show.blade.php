@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="title">{{ $board->title .' | Board' }}</x-slot>
 
-    <div class="max-w-7xl py-12 mx-auto px-2">
+    <div class="max-w-7xl py-4 md:py-12 mx-auto px-2">
         <div class="overflow-hidden">
-            <div class="p-6">
+            <div class="">
 
                 <div class="flex justify-between mb-3 items-center" x-data="{isModalActive: false}">
                     <div class="text-xl font-semibold">{{ $board->title }}</div>
@@ -41,7 +41,7 @@
                     </x-modal>
                 </div>
 
-                <div class="flex space-x-3 tasks-container">
+                <div class="flex space-x-3 tasks-container overflow-x-auto overflow-y-auto">
 
                     <input type="hidden" name="update_task_user_url">
                     <input type="hidden" name="update_url">
@@ -52,9 +52,9 @@
                     @endif
 
                     @foreach ($board->task_users as $task_user)
-                        <div class="w-1/3 {{ ($loop->index + 1) }}bg-blue-50 border-2 border-blue-200 border-opacity-50 shadow-sm sm:rounded-lg task-user-container" data-task-user-id="{{ $task_user->id }}">
+                        <div class="bg-blue-50 border-2 border-blue-200 border-opacity-50 shadow-sm sm:rounded-lg task-user-container" data-task-user-id="{{ $task_user->id }}">
                             <input type="hidden" name="create_url" value="{{ route('tasks.submit', [$board, $task_user]) }}">
-                            <div class="py-3 px-3">
+                            <div class="w-48 md:w-60 py-3 px-3 relative h-full pb-24">
                                 <div class="task-user flex justify-between items-center pb-4" data-id="{{ $task_user->id }}">
                                     <div class="title text-md">
                                         {{ $task_user->name }}
@@ -84,7 +84,7 @@
                                     @endforeach
                                 </div>
 
-                                <div class="pt-8 text-center">
+                                <div class="my-3 px-3 text-center absolute bottom-0 left-0 w-full">
                                     <x-button id="add-card-button" class="add-card-button flex items-center justify-center text-white h-8 w-full" height="h-8">
                                         <div class="icon -mt-0.5">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -140,7 +140,7 @@
                         url: url +'?_token=' + '{{ csrf_token() }}',
                         dataType: "json",
                         success: function(data){
-                            console.log(data);
+                            // console.log(data);
                         },
                         error: (data) => {
                             if(data.responseJSON && data.responseJSON.message) {
@@ -218,7 +218,6 @@
                 }
 
                 if(! $(this).hasClass('editing') && $('#add-card-input') && $('#add-card-input').val() != ""){
-                    console.log("in 1");
                     convertInputToTask();
                 }
 
