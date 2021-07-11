@@ -19,7 +19,7 @@ Play with our [our Hosted version](https://twello.webiggle.com/).
 - DB - MySQL
 
 ## How to use
-Twello follows Kanban board styles
+Twello follows Kanban board styles.
 - Login first
 - Then create board
 - Open board
