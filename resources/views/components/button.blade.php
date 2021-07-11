@@ -1,6 +1,5 @@
 @props([
     'buttonType' => 'primary',
-    'type'       => 'button',
     'height'     => 'h-10',
     'padding'    => 'px-2.5',
     'disabled'   => false,
@@ -22,6 +21,7 @@
         'light'           => 'bg-white text-gray-600 ring-gray-200 focus:border-gray-300 active:bg-gray-300 border-gray-300',
     ][$buttonType];
     $class .= $disabled === 'disabled' ? ' cursor-default' : ' cursor-pointer hover:shadow';
+
     // Add not disabled classes according to button type
     if($disabled !== 'disabled'){
         $class .= ' '.[
@@ -37,6 +37,6 @@
     }
 @endphp
 
-<button type="{!! $type !!}" {{ $attributes->merge(['class' => $class, 'disabled' => $disabled]) }}>
+<button {{ $attributes->merge(['class' => $class, 'disabled' => $disabled]) }}>
     {{ $slot }}{!! $value !!}
 </button>
