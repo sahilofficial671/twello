@@ -21,7 +21,7 @@ use App\Http\Controllers\TaskUserController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('index');
 
 Route::group(["middleware" => ['auth']], function(){
     Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
