@@ -1,6 +1,6 @@
 # Twello
 
-![https://github.com/sahilofficial671/twello/actions?query=workflow%3ABuild"](https://github.com/sahilofficial671/twello/workflows/Build/badge.svg?style=flat-square)
+![https://github.com/sahilofficial671/twello/actions?query=workflow%3ABuild](https://github.com/sahilofficial671/twello/workflows/Build/badge.svg?style=flat-square)
 
 Project/Software Management Software
 
