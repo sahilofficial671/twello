@@ -5,7 +5,7 @@
 Project/Software Management Software
 
 ### Features
-
+Twello follows Kanban board styles.
 - View & Create Boards
 - View, Create, Update & Delete Tasks
 - View, Create, Update & Delete Task User
