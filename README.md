@@ -1,6 +1,6 @@
 # Twello
 
-![Tests](https://github.com/sahilofficial671/twello/workflows/Build/badge.svg?style=flat-square)
+![https://github.com/sahilofficial671/twello/actions?query=workflow%3ABuild"](https://github.com/sahilofficial671/twello/workflows/Build/badge.svg?style=flat-square)
 
 Project/Software Management Software
 
@@ -11,7 +11,7 @@ Project/Software Management Software
 - View, Create, Update & Delete Task User
 
 ## Get Started
-Play with our [our Hosted version](https://url-shortener.webiggle.com/).
+Play with our [our Hosted version](https://twello.webiggle.com/).
 
 ## Setup :memo:
 ### Requirements
