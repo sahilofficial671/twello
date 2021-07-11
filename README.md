@@ -13,6 +13,11 @@ Project/Software Management Software
 ## Get Started
 Play with our [our Hosted version](https://twello.webiggle.com/).
 
+## Technologies Used
+- Frontend - HTML, Tailwind CSS, Alpinejs, jQuery
+- Backend - PHP, Laravel
+- DB - MySQL
+
 ## Setup :memo:
 ### Requirements
 
