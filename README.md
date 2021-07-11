@@ -18,6 +18,14 @@ Play with our [our Hosted version](https://twello.webiggle.com/).
 - Backend - PHP, Laravel
 - DB - MySQL
 
+## How to use
+Twello follows Kanban board styles
+- Login first
+- Then create board
+- Open board
+- Create Task User (Task users are columns in the Kanban Board)
+- Add Task to task user
+
 ## Setup :memo:
 ### Requirements
 
