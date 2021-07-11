@@ -1,6 +1,6 @@
 # Twello
 
-![Tests](https://github.com/sahilofficial671/twello/workflows/Tests/badge.svg?style=flat-square)
+![Tests](https://github.com/sahilofficial671/twello/workflows/Build/badge.svg?style=flat-square)
 
 Project/Software Management Software
 
