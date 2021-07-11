@@ -25,6 +25,6 @@
             </div>
         </div>
 
-        <img alt="Cloud" class="w-auto mx-auto px-6 mt-8 sm:mt-10 sm:max-w-lg md:mt-0" src="{{ url('/images/bg-image-1.png')}}">
+        <img alt="Cloud" class="w-auto mx-auto px-6 mt-8 sm:mt-10 sm:max-w-lg" src="{{ url('/images/bg-image-1.png')}}">
     </div>
 </x-app-layout>
