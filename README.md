@@ -1,14 +1,46 @@
 # Twello
 
-Project/Software Management Software (Trello clone)
+![Tests](https://github.com/sahilofficial671/twello/workflows/Tests/badge.svg?style=flat-square)
+
+Project/Software Management Software
 
 ### Features
 
-- Board
-    - Create
-    
-- Tasks
-    - Create / Update / Delete
+- View & Create Boards
+- View, Create, Update & Delete Tasks
+- View, Create, Update & Delete Task User
 
-- Task Users as Board Column
-    - Create / Update / Delete
+## Get Started
+Play with our [our Hosted version](https://url-shortener.webiggle.com/).
+
+## Setup :memo:
+### Requirements
+
+* PHP >= 7.2.5
+* BCMath PHP Extension
+* Ctype PHP Extension
+* Fileinfo PHP extension
+* JSON PHP Extension
+* Mbstring PHP Extension
+* OpenSSL PHP Extension
+* PDO PHP Extension
+* Tokenizer PHP Extension
+* XML PHP Extension
+* SQL
+* Apache/Nginx
+
+### Run Following Commmands & Add Configurations:
+
+#### 1. Clone project:
+`git clone https://github.com/sahilofficial671/url-shortener.git`
+
+#### 2. Install dependencies:
+**For Dev:** `composer install`
+**For Production:** `composer install --no-dev`
+
+#### 2. Create database schema:
+**Fresh:** `php artisan migrate:fresh`\
+**With Sample Data** `php artisan migrate:fresh --seed`
+
+## Run Project :rocket:
+`php artisan serve`
