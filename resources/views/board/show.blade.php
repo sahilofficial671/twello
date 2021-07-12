@@ -108,7 +108,7 @@
         var all_create_urls = $('body').find('[name=create_url]');
 
         all_create_urls.each(function(){
-            var value = $(this).val().replace('https:', location.protocol)
+            var value = $(this).val().replace('http:', location.protocol)
             console.log(value);
             $(this).val(value);
         });
