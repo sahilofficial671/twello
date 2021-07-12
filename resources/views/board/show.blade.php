@@ -104,6 +104,14 @@
     </div>
 
     <script>
+        console.log(location.protocol);
+        var all_create_urls = $('body').find('[name=create_url]');
+
+        all_create_urls.each(function(){
+            var value = $(this).val().replace('https:', location.protocol)
+            console.log(value);
+            $(this).val(value);
+        });
         var update_url = $('body').find('[name=update_url]');
         var updating_task_id = $('body').find('[name=updating_task_id]');
 
