@@ -135,7 +135,7 @@
 
                     task_user_id = $(this).data('task-user-id');
 
-                    console.log('Task: '+task_id+', Task User: '+task_user_id);
+                    // console.log('Task: '+task_id+', Task User: '+task_user_id);
 
                     var url = $(location).attr("href")+'/task_users/'+task_user_id + '/tasks/' + task_id + '/toggle';
 
@@ -278,7 +278,7 @@
                     beforeSend: function(){
                     },
                     success: function(data){
-                        console.log(data);
+                        // console.log(data);
                     },
                     error: (data) => {
                         console.log(data);
@@ -322,7 +322,7 @@
                     data: {'title': ""},
                     dataType: "json",
                     success: function(data){
-                        console.log(data);
+                        // console.log(data);
                         update_url.val(create_url + '/' + data.task.id);
                         updating_task_id.val(data.task.id);
 
@@ -378,7 +378,7 @@
                     beforeSend: function(){
                     },
                     success: function(data){
-                        console.log(data);
+                        // console.log(data);
                     },
                     error: (data) => {
                         console.log(data);
@@ -425,7 +425,7 @@
                 url: url +'?_token=' + '{{ csrf_token() }}',
                 dataType: "json",
                 success: function(data){
-                    console.log(data);
+                    // console.log(data);
 
                     var allowed = true;
 
@@ -454,9 +454,9 @@
 
         function hitAjax(type, url, data){
 
-            if(type == 'DELETE'){
-                console.log('Deleting - '+ url);
-            }
+            // if(type == 'DELETE'){
+            //     console.log('Deleting - '+ url);
+            // }
 
             $.ajax({
                 type: type,
@@ -464,7 +464,7 @@
                 data: data,
                 dataType: "json",
                 success: function(data){
-                    console.log(data);
+                    // console.log(data);
                 },
                 error: (data) => {
                     if(data.responseJSON && data.responseJSON.message) {
